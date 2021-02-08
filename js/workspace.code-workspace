@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../TP1bis_JeuJavascript"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "tp1JeuJavascripts"
+	}
+}
