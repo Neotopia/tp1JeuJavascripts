@@ -1,4 +1,4 @@
-
+// Enemie chercheur du monstre
 class Ennemies {
   x;
   y;

@@ -2,12 +2,8 @@ let mousePos = {};
 
 function traiteMouseDown(event) {
   //console.log("Souris clickée dans le canvas bouton " + event.button);
-  //console.log("Clickée en x = " + mousePos.x + " y = " + mousePos.y);
 
-
-
-
-
+  // Gestion des etats des jeux
   switch (etatJeu) {
     case "MenuPrincipal":
       etatJeu = "JeuEnCours";
@@ -25,8 +21,6 @@ function traiteMouseDown(event) {
       niveauSuivant();
       break;   
     }
-    
-    assetsLoaded("plop");
 
 }
 
@@ -37,25 +31,23 @@ function traiteMouseUp(event) {
 }
 
 function traiteMouseMove(event) {
-  //console.log("Souris déplacée dans le canvas");
-  // pour prendre en compte les marges, le css, etc.
+  // Gestion du déplacement du monstre dans le canvas en fonction de la souris
   var rect = canvas.getBoundingClientRect();
 
   mousePos.x = event.clientX - rect.left;
   mousePos.y = event.clientY - rect.top;
     
-          //console.log("Souris en x = " + mousePos.x + " y = " + mousePos.y);
-    
-    monstre.setPos(mousePos.x, mousePos.y);
+  monstre.setPos(mousePos.x, mousePos.y);
   
-    if(status != "survival"){
-      tableauDesEnnemies.forEach((ennemie) => {
-        ennemie.setTarget(mousePos.x, mousePos.y);
-      });
-    }
+  if(status != "survival"){
+    tableauDesEnnemies.forEach((ennemie) => {
+    ennemie.setTarget(mousePos.x, mousePos.y);
+    });
+  }
 }
 
 function traiteKeyDown(event) {
+  // Gestion du déplacement du monstre dans le canvas en fonction du clavier
   switch (event.key) {
     case "ArrowLeft":
       monstre.vitesseX = -5;
@@ -84,8 +76,3 @@ function traiteKeyUp(event) {
       break;
   }
 }
-
-/*window.addEventListener('resize', function(){
-  canvas.height = window.innerHeight;
-  canvas.width = window.innerWidth;
-});*/

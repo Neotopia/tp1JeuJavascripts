@@ -1,3 +1,4 @@
+// Monstre chat
 let monstre = {
     x: 100,
     y: 100,
@@ -15,25 +16,13 @@ let monstre = {
         l:40,
         h:20,
     },
-    /*drawBoundingBox: function(ctx){
-        ctx.save(), 
-        this.boundingBox.x = this.x,
-        this.boundingBox.y = this.y,
-        ctx.lineWidth=10,
-        ctx.strokeStyle = "red",
-        ctx.strokeRect(this.boundingBox.x, this.boundingBox.y, this.boundingBox.l, this.boundingBox.h),
-        ctx.restore(),
-
-    },*/
     donneTonNom: function(){
         return "Je m'appelle Paul, je suis x= " + this.x + " y= " + this.y;
     },
     draw: function (ctx) {
-    //bonne pratique: sauver le context courant
-    //couleur courante, taille du trait etc avant
+    //bonne pratique: sauver le context courant couleur courante, taille du trait etc avant
     //de dessiner ou de modifier qqch dans le contexte
     ctx.save();
-    //drawBoundingBox(ctx);
     ctx.translate(this.x, this.y);
 
     ctx.translate(this.l / 2, this.h / 2);
@@ -66,16 +55,16 @@ let monstre = {
     
     //pupilles droite
     ctx.beginPath();   
-    //cx, cy, rayon, angle depart, angle arrivée en radian, 
-    //sens inverse des aiguille d'une montre car y sens inverse
-    ctx.arc(33, 10, 2, 0, Math.PI*2, true);
+    
+    ctx.arc(33, 10, 2, 0, Math.PI*2, true); //cx, cy, rayon, angle depart, angle arrivée en radian 
     ctx.fillStyle = "white";
     ctx.fill();          
     ctx.lineWidth = 1;
     //on donne l'ordre d'affihcier le chemin
-    ctx.stroke(); //en fil de fer
-    //ctx.fillStyle = "white"; -- en forme pleine
-    //ctx.fill();    
+    ctx.stroke(); // en fil de fer
+    /* ctx.fillStyle = "white"; // en forme pleine
+    ctx.fill();   
+    */ 
 
     //pupilles gauche
     ctx.beginPath();   

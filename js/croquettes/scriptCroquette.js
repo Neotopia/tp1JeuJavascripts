@@ -1,6 +1,3 @@
-//script croquette
-
-//change aussi import de script dans index
 window.onload = init;
 
 let canvas;
@@ -19,8 +16,6 @@ let tableauDesEnnemies = [];
     
 //programme principal
 function init(){
-  canvas = document.querySelector("#myCanvas");
-  ctx = canvas.getContext("2d");
     console.log(
         "Page chargée : DOM Ready : toutes les ressources de la page sont chargés"
     );
@@ -30,17 +25,13 @@ function init(){
 
 function startGame(assetsLoaded) {
     //on recupere grace a la selector API un pointeur sur le canvas
-    // ca a rien renvoyé sans le main,
     canvas = document.querySelector("#myCanvas");
 
     //on ajoute des écouteurs souris/clavier sur le canvas
-    canvas.onmousedown = traiteMouseDown; // c'est des poineurs sur les fonction, les () c'est quand on execute les fct
+    canvas.onmousedown = traiteMouseDown; 
     canvas.onmouseup = traiteMouseUp;
     canvas.onmousemove = traiteMouseMove;
 
-    // canvas.addEventListener("mousedown", traiteMouseDown)
-    //le canvas ne peut detecter les touches que si il a focus (voir mooc)
-    //plus simple de mettre l'ecouteur sur le doc (la page)
     document.onkeydown = traiteKeyDown;
     document.onkeyup = traiteKeyUp;
 
@@ -48,22 +39,15 @@ function startGame(assetsLoaded) {
     //va permettre de dessiner, ou charger les propriété du canvas
     //largeur du trait, couleur, repère etc...)
 
-    ctx = canvas.getContext("2d");
+    ctx = canvas.getContext("2d"); 
     assets = assetsLoaded;
 
-
+    // Initialisation des objets
     creerBalles(5);
     creerEnnemies(1);
 
-
-    //console.log(monstre.donneTonNom);
-  
-    
-    
-
-    requestAnimationFrame(animationLoop);
-    //setInterval(changeCouleur, 1000) //appelle la fonction changeCouleur touteles 1000 ms
-    
+    // Lancer l'animation
+    requestAnimationFrame(animationLoop);   
 }
 
 
@@ -106,45 +90,50 @@ function afficheInfoJeu(){
   ctx.font = "20pt Calibri";
   ctx.fillText("Score : " + scoreCourant, 50, 40);
 
-  //ctx.fillText(etatJeu, 300, 100);
   ctx.restore();
 }
 
 function animationLoop(){
-    // 1 on efface le canvas
+    // On efface le canvas
     ctx.clearRect(0,0, canvas.width, canvas.height);
+
+    // On affiche les informations
     afficheInfoJeu(); // scores, niveau etc.
 
+    // Gestion de l'affichage en fonction de l'état du jeu
     switch (etatJeu) {
+
       case "MenuPrincipal":
         afficheMenuPrincipal();
         niveauCourant = 1;
         ennemie.vitesse = 1;
         scoreCourant = 0;
         break;
+
       case "JeuEnCours":
         updateJeu();
         break;
+
       case "EcranChangementNiveau":
         if (niveauCourant == 3 ){
           console.log("YOU WIN");
           etatJeu = "End";
         }else{
           afficheEcranChangementNiveau();
-        }
-       
+        }   
         break;
+
       case "GameOver":
         afficheEcranGameOver();
- 
         break;
+
       case "End":
        afficheEcranEnd();
-
+       break;
     }
     
-  // 5 On demande au navigateur de rappeler la fonction
-  // animationLoop dans 1/60ème de seconde
+  // On demande au navigateur de rappeler la fonction animationLoop 
+  // dans 1/60ème de seconde
     requestAnimationFrame(animationLoop);
 }
 
@@ -170,8 +159,7 @@ function afficheEcranChangementNiveau() {
 
     ctx.fillText("Cliquez pour niveau suivant", 65, 60);
 
-    ctx.restore();
-  
+    ctx.restore(); 
 }
 
 function afficheEcranGameOver() {
@@ -210,29 +198,42 @@ function niveauSuivant() {
   ennemie.vitesse = ennemie.vitesse + 0.2;
   
  etatJeu = "JeuEnCours";
-  
-
-
-  
-
-
 }
 
 function updateJeu() {
+  // On dessine notre monstre
   monstre.draw(ctx);
 
+  // On instancie nos objets
   updateBalles();
   updateEnnemies();
+
   // 3 on déplace les objets
   monstre.move();
   //deplacerLesBalles();
 
-  // 4 on peut faire autre chose (par ex: detecter des collisions,
-  // ou prendre en compte le clavier, la souris, la manette de jeu)
+  // On detecte les collisions,
   traiteCollisionsJoueurAvecBords();
+}
 
+function updateBalles() {
+  // utilisation d'un itérateur sur le tableau
+  tableauDesBalles.forEach((b) => {
+    b.draw(ctx);
+    traiteCollisionsBalleAvecBords(b);
+    traiteCollisionBalleAvecMonstre(b);
+    b.move();
+  });
+}
 
-
+function updateEnnemies() {
+  // utilisation d'un itérateur sur le tableau
+  tableauDesEnnemies.forEach((ennemie) => {
+    ennemie.draw(ctx);
+ 
+    traiteCollisionsJoueurAvecEnnemies(ennemie);
+    ennemie.move();
+  });
 }
 
 function traiteCollisionsJoueurAvecEnnemies(ennemie){
@@ -284,25 +285,3 @@ function traiteCollisionBalleAvecMonstre(b) {
   
     }
   }
-
-  function updateBalles() {
-    // utilisation d'un itérateur sur le tableau
-    tableauDesBalles.forEach((b) => {
-      b.draw(ctx);
-      traiteCollisionsBalleAvecBords(b);
-      traiteCollisionBalleAvecMonstre(b);
-      b.move();
-    });
-  }
-
-  function updateEnnemies() {
-    // utilisation d'un itérateur sur le tableau
-    tableauDesEnnemies.forEach((ennemie) => {
-      ennemie.draw(ctx);
-   
-      traiteCollisionsJoueurAvecEnnemies(ennemie);
-      ennemie.move();
-    });
-  }
-
-
