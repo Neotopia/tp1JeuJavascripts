@@ -10,16 +10,16 @@ const assetsToLoadURLs = {
       loop: false,
       volume: 1.0,
     },
-    humbug: {
+    bark: {
       url:
-        "https://mainline.i3s.unice.fr/mooc/SkywardBound/assets/sounds/humbug.mp3",
-      buffer: true,
-      loop: true,
+      "assets/audio/bark.wav",
+      buffer: false,
+      loop: false,
       volume: 1.0,
     },
-    concertino: {
+    catMusic: {
       url:
-        "https://mainline.i3s.unice.fr/mooc/SkywardBound/assets/sounds/christmas_concertino.mp3",
+      "assets/audio/nyanCat.mp3",
       buffer: true,
       loop: true,
       volume: 1.0,

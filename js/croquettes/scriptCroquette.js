@@ -42,6 +42,7 @@ function startGame(assetsLoaded) {
     ctx = canvas.getContext("2d"); 
     assets = assetsLoaded;
 
+    assets.catMusic.play();
     // Initialisation des objets
     creerBalles(5);
     creerEnnemies(1);
@@ -139,12 +140,17 @@ function animationLoop(){
 
 function afficheMenuPrincipal(){
     ctx.save();
-    ctx.translate(0, 100);
-    ctx.fillStyle = "green";
-    ctx.font = "30pt Calibri";
-    ctx.fillText("MENU PRINCIPAL", 100, 20);
+    ctx.translate(0, 150);
+    ctx.fillStyle = "yellow";
+    ctx.font = "40pt Calibri";
+    ctx.fillText("MENU PRINCIPAL", 120, 20);
 
-    ctx.fillText("Cliquez pour démarrer", 65, 60);
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = "darkGreen";
+    ctx.strokeText("MENU PRINCIPAL", 120, 20);
+    ctx.fillStyle = "white";
+    ctx.font = "40pt Calibri";
+    ctx.fillText("Cliquez pour démarrer", 65, 90);
 
     ctx.restore();
 }
@@ -154,7 +160,7 @@ function afficheEcranChangementNiveau() {
     ctx.save();
     ctx.translate(0, 100);
     ctx.fillStyle = "green";
-    ctx.font = "30pt Calibri";
+    ctx.font = "50pt Calibri";
     ctx.fillText("Changement niveau", 100, 20);
 
     ctx.fillText("Cliquez pour niveau suivant", 65, 60);
@@ -164,15 +170,100 @@ function afficheEcranChangementNiveau() {
 
 function afficheEcranGameOver() {
   ctx.save();
-  ctx.translate(-70, 150);
+  ctx.translate(-20, 150);
   ctx.fillStyle = 'white';
   ctx.font="70pt Calibri";
-  ctx.fillText("Game Over :(", 100, 20);
+  ctx.fillText("Game Over", 100, 20);
 
   ctx.lineWidth = 2;
   ctx.strokeStyle = "black";
-  ctx.strokeText("Game Over :(", 100, 20);
+  ctx.strokeText("Game Over", 100, 20);
+
+  ctx.translate(60, 150);
+  ctx.fillStyle = 'white';
+  ctx.font="55pt Arial";
+  ctx.fillText("Too Bad", 100, 20);
+
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = "black";
+  ctx.strokeText("Too Bad", 100, 20);
  
+  ctx.restore();
+}
+function afficheMenuPrincipal(){
+    ctx.save();
+    ctx.translate(0, 150);
+    ctx.fillStyle = "yellow";
+    ctx.font = "40pt Calibri";
+    ctx.fillText("MENU PRINCIPAL", 120, 20);
+
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = "darkGreen";
+    ctx.strokeText("MENU PRINCIPAL", 120, 20);
+    ctx.fillStyle = "white";
+    ctx.font = "40pt Calibri";
+    ctx.fillText("Cliquez pour démarrer", 65, 90);
+
+    ctx.restore();
+}
+
+function afficheEcranChangementNiveau() {
+
+    ctx.save();
+    ctx.translate(0, 150);
+    ctx.fillStyle = "white";
+    ctx.font = "40pt Calibri";
+    ctx.fillText("Changement niveau", 100, 20);
+
+    ctx.font = "30pt Calibri";
+    ctx.fillText("Cliquez pour niveau suivant", 85, 100);
+
+    ctx.restore(); 
+}
+
+function afficheEcranGameOver() {
+  ctx.save();
+  ctx.translate(-20, 150);
+  ctx.fillStyle = 'white';
+  ctx.font="70pt Calibri";
+  ctx.fillText("Game Over", 100, 20);
+
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = "black";
+  ctx.strokeText("Game Over", 100, 20);
+
+  ctx.translate(60, 150);
+  ctx.fillStyle = 'white';
+  ctx.font="55pt Arial";
+  ctx.fillText("Too Bad", 100, 20);
+
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = "black";
+  ctx.strokeText("Too Bad", 100, 20);
+ 
+  ctx.restore();
+}
+
+function afficheEcranGameOver() {
+  ctx.save();
+  ctx.translate(-20, 150);
+  ctx.fillStyle = 'white';
+  ctx.font="70pt Calibri";
+  ctx.fillText("Game Over", 100, 20);
+
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = "black";
+  ctx.strokeText("Game Over", 100, 20);
+
+  ctx.translate(70, 130);
+  ctx.fillStyle = 'white';
+  ctx.font="55pt Arial";
+  ctx.fillText("Too Bad", 100, 20);
+
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = "black";
+  ctx.strokeText("Too Bad", 100, 20);
+
   ctx.restore();
 }
 
@@ -180,13 +271,21 @@ function afficheEcranEnd() {
   
   ctx.save();
   ctx.translate(-70, 150);
-  ctx.fillStyle = 'white';
+  ctx.fillStyle = 'orange';
   ctx.font="70pt Calibri";
-  ctx.fillText("YOU WIN", 100, 20);
+  ctx.fillText("YOU WIN", 200, 20);
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = "red";
+  ctx.strokeText("YOU WIN", 200, 20);
 
+  ctx.fillStyle = 'white';
+  ctx.font="30pt Calibri";
+  ctx.fillText("and now", 300, 100);
+  ctx.font="30pt Calibri";
+  ctx.fillText("you enter in the endless Game", 125, 140);
   ctx.lineWidth = 2;
   ctx.strokeStyle = "black";
-  ctx.strokeText("YOU WIN, you enter in the endlessGame", 100, 20);
+  
  
   ctx.restore();
 }
@@ -250,6 +349,7 @@ function traiteCollisionsJoueurAvecEnnemies(ennemie){
     )
   ){
     console.log("COLLISION AVEC L'ENNEMIE");
+    assets.bark.play();
     etatJeu = "GameOver";
     }
 
@@ -272,6 +372,7 @@ function traiteCollisionBalleAvecMonstre(b) {
       console.log("COLLISION....");
       // on cherche l'index de la balle dans le tableau des balles
       let index = tableauDesBalles.indexOf(b);
+      assets.plop.play();
   
       // pour supprimer un élément : on utilise la méthode splice(index, nbElementsASupprimer) sur le tableau
       tableauDesBalles.splice(index, 1);
