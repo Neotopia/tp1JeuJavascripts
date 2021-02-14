@@ -17,8 +17,8 @@ class Ennemies {
     this.vitesse = vitesse;
   }
   setTarget(x, y) {
-    this.target.x = x;
-    this.target.y = y;
+    this.target.x = x - 20;
+    this.target.y = y - 50;
   }
 
   distanceToTarget() {
@@ -30,7 +30,7 @@ class Ennemies {
   
   draw(ctx) {
     ctx.save();
-    ctx.translate(this.x , this.y);
+    ctx.translate(this.x, this.y );
         ctx.drawImage(this.img, 0, 0, this.l, this.h);
 
     ctx.restore();
