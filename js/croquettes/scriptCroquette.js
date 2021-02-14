@@ -116,7 +116,7 @@ function animationLoop(){
         break;
 
       case "EcranChangementNiveau":
-        if (niveauCourant == 3 ){
+        if (niveauCourant == 6 ){ //MODIFIER ICI SI LE YOU WIN EST TROP LONG A AVOIR
           console.log("YOU WIN");
           etatJeu = "End";
         }else{
