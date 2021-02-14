@@ -3,7 +3,7 @@
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Intrigue :
 Dans ce jeu Javascipt, vous pourrez jouer avec votre chat Loki dans votre parc préféré. Cependant, Loki déteste Bart qui est un méchant chien. 
-Alors que le parc se trouve inondé de croquettes sous la forme de balle, Bart va poursuivre Loki. Il fait aider Loki à échapper à Bart à l'aide de votre souris ou clavier tout en mangeant des croquettes.
+Alors que le parc se trouve inondé de croquettes sous la forme de balle, Bart va poursuivre Loki. Il faut aider Loki à échapper à Bart à l'aide de votre souris ou clavier tout en mangeant des croquettes.
 Mais attention, à chaque fois que vous finissez les croquettes d'une zone, le chien se met à courir de plus en plus vite !
  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  
