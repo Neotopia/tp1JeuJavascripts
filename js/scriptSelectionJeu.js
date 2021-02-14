@@ -41,12 +41,7 @@ function init(){
 }
 
 function loadMusic(){
-    //let audio = new Audio('assets/audio/nyanCat.mp3');
-    //audio.play();
-    //setInterval(function(){
-    //    var audio = new Audio('assets/sounds/menu.mp3');
-    //    audio.play();
-    //},16027);
+
     let musique = new Howl({
         src: "assets/audio/nyanCat.mp3",
         buffer: true,
@@ -62,7 +57,7 @@ function animationLoop(){
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     writeGames();
-    
+
     lesEtoilesFilantes();
     requestAnimationFrame(animationLoop);
 }
