@@ -10,9 +10,11 @@ let etatJeu = "MenuPrincipal";
 let status = "survival";
 
 let assets;
+let ennemie;
 
 //stocker les objets graphiques du jeu, ennemis, etc.
 let tableauDesBalles = [];
+let tableauDesEnnemies = [];
 
     
 //programme principal
@@ -20,12 +22,12 @@ function init(){
     console.log(
         "Page chargée : DOM Ready : toutes les ressources de la page sont chargés"
     );
-    load();
+    loadAssets(startGame);
     
     //loadAssets(startGame);
 }
 
-function load(){
+function startGame(assetsLoaded) {
 //function startGame(assetsLoaded) {
     //on recupere grace a la selector API un pointeur sur le canvas
     // ca a rien renvoyé sans le main,
@@ -47,7 +49,7 @@ function load(){
     //largeur du trait, couleur, repère etc...)
 
     ctx = canvas.getContext("2d");
-    //assets = assetsLoaded;
+    assets = assetsLoaded;
 
     //console.log(monstre.donneTonNom);
     creerEnnemie();
@@ -81,10 +83,8 @@ function creerDesBalles(nb){
 };
 
 function creerEnnemie(){
-  var enemyArray = []
- // balleChercheuse = new BalleChercheuse(100, 100, 40, "red", 0, 0);
-  //tableauDesBalles.push(balleChercheuse);
-  monstre.draw(ctx);
+  ennemie = new Poissons(0, 0, assets["gentle"], 80, 80, 1);
+  tableauDesEnnemies.push(ennemie);
 }
 
 function afficheInfoJeu(){
