@@ -42,7 +42,7 @@ function startGame(assetsLoaded) {
     ctx = canvas.getContext("2d"); 
     assets = assetsLoaded;
 
-    assets.catMusic.play();
+    assets.xmas.play();
     // Initialisation des objets
     creerBalles(5);
     creerEnnemies(1);
@@ -72,7 +72,7 @@ function creerBalles(nb){
 };
 
 function creerEnnemies(nb){
-  ennemie = new Ennemies(100, 100, assets["dog"], 80, 80, 1);
+  ennemie = new Ennemies(0, 0, assets["dog"], 80, 80, 1);
   tableauDesEnnemies.push(ennemie);
   
 }
@@ -126,6 +126,8 @@ function animationLoop(){
 
       case "GameOver":
         afficheEcranGameOver();
+        ennemie.x = 0;
+        ennemie.y = 0;
         break;
 
       case "End":
@@ -280,9 +282,9 @@ function afficheEcranEnd() {
 
   ctx.fillStyle = 'white';
   ctx.font="30pt Calibri";
-  ctx.fillText("and now", 300, 100);
+  ctx.fillText("Mais...", 300, 100);
   ctx.font="30pt Calibri";
-  ctx.fillText("you enter in the endless Game", 125, 140);
+  ctx.fillText("Promenons encore le chien !", 125, 140);
   ctx.lineWidth = 2;
   ctx.strokeStyle = "black";
   
@@ -294,7 +296,9 @@ function niveauSuivant() {
   console.log("NIVEAU SUIVANT");
   niveauCourant++;
   creerBalles(niveauCourant + 5);
-  ennemie.vitesse = ennemie.vitesse + 0.2;
+  ennemie.vitesse = ennemie.vitesse + 0.4;
+  ennemie.x = 0;
+  ennemie.y = 0;
   
  etatJeu = "JeuEnCours";
 }
