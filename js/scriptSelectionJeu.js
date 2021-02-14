@@ -2,19 +2,20 @@ window.onload = init;
 
 let canvas;
 let ctx;
-let audio = new Audio('assets/audio/nyanCat.mp3');
+
 
 function init(){
-    console.log("charger");
+    let audio = new Audio('assets/audio/nyanCat.mp3');
     audio.play();
-    
+    console.log("charger");
     canvas = document.querySelector("#myCanvas");
-    canvas.addEventListener('click', gameSelect,false);
-    
-    
 
+    
+    
+    
   
     ctx = canvas.getContext('2d');
+    canvas.onmousedown = gameSelect;
     writeGames();
 
     //document.addEventListener('click',loadMusic)
